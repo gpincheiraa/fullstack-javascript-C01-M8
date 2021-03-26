@@ -15,12 +15,16 @@ jobs:
           run: |
             cd ./frontend
             npm install
-            npm run build -- --dest ./frontend/public
+            npm run build
+            cd ..
+            mkdir -p public
+            cp -R ./frontend/dist/. public
+            ls -R -lha public
         - name: Archive production artifacts
           uses: actions/upload-artifact@v2
           with:
             name: frontend-public-artifact
-            path: ./frontend/public/
+            path: public/
   deploy:
     runs-on: ubuntu-latest
     needs: build
