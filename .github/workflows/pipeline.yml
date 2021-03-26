@@ -15,4 +15,5 @@ jobs:
         - name: Run deploy script
           run: |
             # ./ci/deploy
-            ls -la
+            ls -la ci
+            cat ./ci/deploy
