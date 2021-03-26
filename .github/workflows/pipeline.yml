@@ -15,20 +15,14 @@ jobs:
           run: |
             cd ./frontend
             npm install
-            npm run build
-            cd ..
-            mkdir -p public
-            cp -R ./frontend/dist/. public
-            ls -R -lha public
+            npm run build -- --dest public
         - name: Archive production artifacts
           uses: actions/upload-artifact@v2
           with:
             name: frontend-public-artifact
-            path: public
+            path: ./frontend/public/
   deploy:
     runs-on: ubuntu-latest
-    env:
-      FRONTEND_STATIC_SITE: ./public
     needs: build
     steps:
         - name: Checkout code
@@ -37,7 +31,10 @@ jobs:
           uses: actions/download-artifact@v2
           with:
             name: frontend-public-artifact
-            path: public
+            path: backend/public
         - name: Run deploy script
           run: |
             ./ci/deploy
+        - name: Run release script
+          run: |
+            ./ci/release

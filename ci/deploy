@@ -1,17 +1,23 @@
 #!/bin/bash
 set -euo pipefail
 
-set_production_server() {
-    BACKEND_PUBLIC_FOLDER="./backend/public"
-
-    mkdir -p $BACKEND_PUBLIC_FOLDER
-    cp -R $FRONTEND_STATIC_SITE/. $BACKEND_PUBLIC_FOLDER
-}
-
-echo "DIST FOLDER $FRONTEND_STATIC_SITE"
-ls -lha
-
-set_production_server
-
-echo "public backend"
+echo "PUBLIC FOLDER"
 ls -R -lha ./backend/public
+
+ENVIRONMENT_NAME="production"
+
+echo "============================================================="
+echo "     CREANDO IMAGEN DOCKER                                   "
+echo "============================================================="
+IMAGE_NAME="registry.heroku.com/${HEROKU_APP_NAME}/web"
+
+cd backend
+
+echo "$HEROKU_KEY" | docker login --username ${HEROKU_OWNER_EMAIL} --password-stdin registry.heroku.com
+docker build -t $IMAGE_NAME \
+    --build-arg environment_name=${ENVIRONMENT_NAME} .
+
+echo "============================================================="
+echo "     PUBLICANDO VERSION ${PACKAGE_VERSION}...                                          "
+echo "============================================================="
+docker push $IMAGE_NAME
