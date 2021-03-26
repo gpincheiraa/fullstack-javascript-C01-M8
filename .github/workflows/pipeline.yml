@@ -15,7 +15,7 @@ jobs:
           run: |
             cd ./frontend
             npm install
-            npm run build -- --dest public
+            npm run build -- --dest ./frontend/public
         - name: Archive production artifacts
           uses: actions/upload-artifact@v2
           with:
