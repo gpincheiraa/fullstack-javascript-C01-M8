@@ -23,7 +23,7 @@ jobs:
           uses: actions/upload-artifact@v2
           with:
             name: frontend-public-artifact
-            path: '$FRONTEND_STATIC_SITE/**/*'
+            path: '${FRONTEND_STATIC_SITE}/**/*'
 
   deploy:
     runs-on: ubuntu-latest
