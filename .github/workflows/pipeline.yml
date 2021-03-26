@@ -24,7 +24,7 @@ jobs:
           uses: actions/upload-artifact@v2
           with:
             name: frontend-public-artifact
-            path: public/
+            path: public
   deploy:
     runs-on: ubuntu-latest
     env:
