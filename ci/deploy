@@ -14,4 +14,4 @@ ls -lha
 set_production_server
 
 echo "public backend"
-ls -lha ./backend/public
+ls -R -lha ./backend/public

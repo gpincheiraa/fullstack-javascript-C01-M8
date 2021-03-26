@@ -1,0 +1,14 @@
+#!/bin/bash
+set -euo pipefail
+
+cd ./frontend
+
+npm install
+npm run build
+
+cd ..
+
+mkdir -p public
+cp -R ./frontend/dist public
+
+ls -R -lha public
