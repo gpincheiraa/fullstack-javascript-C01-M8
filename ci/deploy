@@ -12,3 +12,7 @@ set_production_server() {
 
 echo "DIST FOLDER $FRONTEND_STATIC_SITE"
 ls -lha
+
+set_production_server
+
+ls -lha ./backend/public
