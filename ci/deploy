@@ -4,14 +4,13 @@ set -euo pipefail
 set_production_server() {
     BACKEND_PUBLIC_FOLDER="./backend/public"
 
-    build_frontend $FRONTEND_STATIC_SITE
-
     mkdir -p $BACKEND_PUBLIC_FOLDER
     cp -R $FRONTEND_STATIC_SITE/. $BACKEND_PUBLIC_FOLDER
 }
 
 echo "DIST FOLDER $FRONTEND_STATIC_SITE"
-ls -lha
+ls -lha frontend
+ls -lha backend
 
 set_production_server
 
