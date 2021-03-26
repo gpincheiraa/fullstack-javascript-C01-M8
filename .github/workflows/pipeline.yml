@@ -7,12 +7,12 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    container:
-      image: node:14.15.0-alpine3.12
+    defaults:
+        run:
+          shell: bash
     steps:
         - name: Checkout code
           uses: actions/checkout@v2
         - name: Run deploy script
           run: |
             bash ./ci/deploy
-          shell: bash
