@@ -5,6 +5,7 @@ ENV ENVIRONMENT_NAME=$environment_name
 
 COPY . .
 
-RUN npm install 
+RUN npm install
+RUN npm run db:migrate && npm run db:seeds
 
 CMD node index.js
