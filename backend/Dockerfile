@@ -1,12 +1,13 @@
-FROM node:12-alpine
+FROM node:12-alpine AS builder
+WORKDIR /app
 
-COPY . .
+COPY . /app
 
 RUN npm install
+RUN npm run db:migrate && npm run db:seeds
 
-#TODO resolver con multi stage
+FROM builder
 ARG environment_name
 ENV NODE_ENV=$environment_name
-RUN npm run db:migrate && npm run db:seeds
 
 CMD node index.js

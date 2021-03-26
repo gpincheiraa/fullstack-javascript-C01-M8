@@ -1,6 +1,7 @@
 .DS_Store
 node_modules
 /frontend/dist
+/backend/public
 /coverage
 127.0.0.1
 /tests/e2e/videos/
