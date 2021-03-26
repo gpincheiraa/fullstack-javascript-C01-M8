@@ -7,12 +7,9 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    defaults:
-        run:
-          shell: bash
     steps:
         - name: Checkout code
           uses: actions/checkout@v2
         - name: Run deploy script
           run: |
-            bash ./ci/deploy
+            ./ci/deploy
