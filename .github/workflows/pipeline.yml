@@ -15,3 +15,4 @@ jobs:
         - name: Run deploy script
           run: |
             bash ./ci/deploy
+          shell: bash
