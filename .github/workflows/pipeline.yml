@@ -9,8 +9,6 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: node:14.15.0-alpine3.12
-    env:
-      FRONTEND_STATIC_SITE: ./frontend/public
     steps:
         - name: Checkout code
           uses: actions/checkout@v2
@@ -23,7 +21,7 @@ jobs:
           uses: actions/upload-artifact@v2
           with:
             name: frontend-public-artifact
-            path: '${FRONTEND_STATIC_SITE}/**/*'
+            path: ./frontend/public
 
   deploy:
     runs-on: ubuntu-latest
