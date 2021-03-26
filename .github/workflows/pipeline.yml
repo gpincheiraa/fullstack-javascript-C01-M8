@@ -12,6 +12,8 @@ jobs:
     env:
       FRONTEND_STATIC_SITE: ./frontend/public
     steps:
+        - name: Checkout code
+          uses: actions/checkout@v2
         - name: Build Frontend
           run: |
             cd ./frontend
@@ -29,12 +31,12 @@ jobs:
     env:
       FRONTEND_STATIC_SITE: ./frontend/public
     steps:
+        - name: Checkout code
+          uses: actions/checkout@v2
         - name: Download a single artifact
           uses: actions/download-artifact@v2
           with:
             name: frontend-public-artifact
-        - name: Checkout code
-          uses: actions/checkout@v2
         - name: Run deploy script
           run: |
             ./ci/deploy
