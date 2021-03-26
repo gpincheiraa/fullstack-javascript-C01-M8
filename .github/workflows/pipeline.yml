@@ -30,6 +30,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       FRONTEND_STATIC_SITE: ./frontend/public
+    needs: build
     steps:
         - name: Checkout code
           uses: actions/checkout@v2
