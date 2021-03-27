@@ -1,11 +1,11 @@
 .DS_Store
 node_modules
-/dist
+/frontend/dist
+/backend/public
 /coverage
 127.0.0.1
 /tests/e2e/videos/
 /tests/e2e/screenshots/
-/ci/release
 
 # local env files
 .env.local

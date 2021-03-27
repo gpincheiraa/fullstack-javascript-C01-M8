@@ -23,7 +23,7 @@ const initServer = () => {
 
   app.listen(port, () => {
     console.log(
-      `App is running on http://localhost:${port} in environmet ${JSON.stringify(process.env.ENV)}`
+      `App is running on http://localhost:${port} in environment ${JSON.stringify(process.env.NODE_ENV)}`
     );
   });
 };

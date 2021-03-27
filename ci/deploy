@@ -1,0 +1,23 @@
+#!/bin/bash
+set -euo pipefail
+
+echo "PUBLIC FOLDER"
+ls -R -lha ./backend/public
+
+ENVIRONMENT_NAME="production"
+IMAGE_NAME="registry.heroku.com/${HEROKU_APP_NAME}/web"
+
+echo "============================================================="
+echo "     CREANDO IMAGEN DOCKER ${IMAGE_NAME}                     "
+echo "============================================================="
+
+cd backend
+
+echo "$HEROKU_KEY" | docker login --username ${HEROKU_OWNER_EMAIL} --password-stdin registry.heroku.com
+docker build -t $IMAGE_NAME \
+    --build-arg environment_name=${ENVIRONMENT_NAME} .
+
+echo "============================================================="
+echo "     PUBLICANDO VERSION ${IMAGE_NAME}                        "
+echo "============================================================="
+docker push $IMAGE_NAME
