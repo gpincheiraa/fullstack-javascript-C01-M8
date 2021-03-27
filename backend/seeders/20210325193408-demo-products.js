@@ -7,13 +7,23 @@ const products = [
     description: "Green go!",
   },
   {
-    name: "Bidu",
+    name: "Bidú",
     code: "000002",
     description: "Guinda cola",
   },
   {
     name: "Sorbete Letelier",
     code: "000003",
+    description: "Sabooooor",
+  },
+  {
+    name: "Fruti-cola",
+    code: "000004",
+    description: "Sabooooor",
+  },
+  {
+    name: "Pekzi",
+    code: "000005",
     description: "Sabooooor",
   },
 ];
