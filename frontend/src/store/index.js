@@ -6,7 +6,12 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    products: []
+    products: [],
+    product: {
+      name: '',
+      description: '',
+      code: ''
+    }
   },
   mutations: {
     SET_PRODUCTS(state, products){
@@ -19,6 +24,15 @@ export default new Vuex.Store({
         console.log(process.env.VUE_APP_TEST);
         const response = await axios.get(`${process.env.VUE_APP_API_URL}/products`)
         commit('SET_PRODUCTS', response.data)
+      } catch (error) {
+        console.log(error);
+      }
+    },
+
+    async createProducts({dispatch}, productParams){
+      try {
+        await axios.post(`${process.env.VUE_APP_API_URL}/products`, productParams)
+        dispatch("getProducts")
       } catch (error) {
         console.log(error);
       }
