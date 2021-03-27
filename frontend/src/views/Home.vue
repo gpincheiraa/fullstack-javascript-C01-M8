@@ -2,8 +2,11 @@
   <section class="home">
     <h1>Products</h1>
     <ul id="example-1">
-      <li v-for="product in products" :key="product.id">
-      <h3>{{ product.name }}</h3>
+      <li
+        v-for="product in products"
+        :key="product.id"
+      >
+        <h3>{{ product.name }}</h3>
         <p>{{ product.description }}</p>
       </li>
     </ul>
