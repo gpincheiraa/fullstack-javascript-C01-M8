@@ -25,10 +25,10 @@ Authorization can be implemented with:
 
 Is a unified approach to grant access to some app to your resources
 
-- Resource owner
-- Resource Server
-- Client app
-- Authorization Server
+- Resource owner (the user or account connected)
+- Resource Server (owr backend)
+- Client app (frontend app)
+- Authorization Server (Google's firebase auth service)
 
 # SSO OpenID Connect ?
 
