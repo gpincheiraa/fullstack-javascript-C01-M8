@@ -30,29 +30,13 @@ export default new Vuex.Store({
     },
 
     async createProducts({dispatch}, productParams){
+      console.log(process.env.NODE_ENV, process.env.VUE_APP_API_URL);
       try {
         await axios.post(` ${process.env.VUE_APP_API_URL}/products`, productParams);
         dispatch("getProducts");
       } catch (error) {
         console.log(error);
-      }
-      for (const param of productParams) {
-        if (true) {
-          switch (param.name) {
-            case name:
-             console.log(param.value);  
-              break;
-            default:
-              if(param.value = "description"){ 
-                console.log(param.value);
-              } 
-              else{
-                console.log(param.value);
-              }
-              break;
-          }
-        }
-      }
+      } 
     }
   },
   modules: {
