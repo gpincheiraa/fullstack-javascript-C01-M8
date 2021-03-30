@@ -10,8 +10,6 @@ jobs:
       image: node:14.15.0-alpine3.12
     env:
       HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
-      HEROKU_KEY: ${{ secrets.HEROKU_KEY }}
-      HEROKU_OWNER_EMAIL: ${{ secrets.HEROKU_OWNER_EMAIL }}
     steps:
         - name: Checkout code
           uses: actions/checkout@v2
@@ -19,7 +17,7 @@ jobs:
           run: |
             cd ./frontend
             npm install
-            npm run build
+            npm run build -- --mode production
             cd ..
             mkdir -p public
             cp -R ./frontend/dist/. public
@@ -36,6 +34,8 @@ jobs:
       HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
       HEROKU_KEY: ${{ secrets.HEROKU_KEY }}
       HEROKU_OWNER_EMAIL: ${{ secrets.HEROKU_OWNER_EMAIL }}
+      FIREBASE_BUCKET_NAME: ${{ secrets.FIREBASE_BUCKET_NAME }}
+      FIREBASE_SERVICE_ACCOUNT_OBJECT_TOKEN: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_OBJECT_TOKEN }}
     steps:
         - name: Checkout code
           uses: actions/checkout@v2

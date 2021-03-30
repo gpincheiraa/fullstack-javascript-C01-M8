@@ -4,15 +4,17 @@
   "description": "backend side for a fullstack demo project from Boolean Academy",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js", 
+    "start": "nodemon server.js",
     "db:migrate": "sequelize-cli db:migrate",
     "db:seeds": "sequelize-cli db:seed:all"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "firebase-admin": "^9.6.0",
     "sequelize": "^6.6.2",
     "sqlite3": "^5.0.2"
   },
