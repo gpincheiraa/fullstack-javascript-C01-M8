@@ -20,7 +20,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.raw());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use("/", authMiddleware);
+app.use("/products", authMiddleware);
 app.use("/", router);
 
 const port = process.env.PORT || 3000;
