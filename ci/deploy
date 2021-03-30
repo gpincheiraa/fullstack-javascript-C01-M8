@@ -12,7 +12,7 @@ echo "============================================================="
 echo "     CREANDO IMAGEN DOCKER ${IMAGE_NAME}                     "
 echo "============================================================="
 
-./ci/build_service_account
+./ci/build_service_account $FIREBASE_SERVICE_ACCOUNT_FILENAME
 
 cd backend
 
