@@ -6,7 +6,7 @@ ls -R -lha ./backend/public
 
 ENVIRONMENT_NAME="production"
 IMAGE_NAME="registry.heroku.com/${HEROKU_APP_NAME}/web"
-FIREBASE_SERVICE_ACCOUNT_FILENAME="firebase_service_account.json"
+FIREBASE_SERVICE_ACCOUNT_FILENAME="firebase-service-account.json" #MUST BE THE SAME NAME AS IN THE BUCKET 
 
 echo "============================================================="
 echo "     CREANDO IMAGEN DOCKER ${IMAGE_NAME}                     "
