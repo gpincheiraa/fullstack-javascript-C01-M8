@@ -2,9 +2,12 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const router = require("./routes");
 const cors = require("cors");
+const authMiddleware = require("./auth")
 
 const app = express();
 
+
+// TODO: Intentar quitar cors que corriendo en local y en prod back y front se comuniquen sin problemas de cors
 app.use(
   cors({
     origin: "http://localhost:8080",
@@ -17,6 +20,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.raw());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.use("/", authMiddleware);
 app.use("/", router);
 
 const port = process.env.PORT || 3000;
