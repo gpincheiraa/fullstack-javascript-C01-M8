@@ -1,29 +1,67 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import Home from '@/views/Home.vue'
+import {Auth} from "@/firebase";
 
 Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/',
-    name: 'Home',
-    component: Home
+    path: "/",
+    name: "Home",
+    component: Home,
   },
   {
-    path: '/about',
-    name: 'About',
+    path: "/registro",
+    name: "SignUp",
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  }
-]
+    component: () =>
+      import(/* webpackChunkName: "register" */ "../views/Register.vue"),
+  },
+  {
+    path: "/ingreso",
+    name: "SignIn",
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(/* webpackChunkName: "login" */ "../views/Login.vue"),
+  },
+  {
+    path: "/productos",
+    name: "Products",
+    component: () =>
+      import(/* webpackChunkName: "products" */ "../views/Products.vue"),
+  },
+  {
+    path: "/apod",
+    name: "Apod",
+    component: () =>
+      import(/* webpackChunkName: "products" */ "../views/Apod.vue"),
+    meta: {
+      login: true
+    }
+  },
+];
 
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
 })
+
+router.beforeEach((to, from, next) => {
+  let user = Auth.currentUser;
+  let authRequired = to.matched.some((route) => route.meta.login);
+
+  if (!user && authRequired) {
+    next("/ingreso");
+  } else {
+    next();
+  }
+});
+
 
 export default router

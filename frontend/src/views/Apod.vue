@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <h1>Bienvenido al curso fullstack Javascript</h1>
-  </div>
+  <v-container>
+    <h1>Ruta autenticada</h1>
+  </v-container>
 </template>
 
 <script>

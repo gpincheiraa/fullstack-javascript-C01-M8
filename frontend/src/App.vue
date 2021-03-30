@@ -1,36 +1,62 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">
+  <v-app>
+    <v-app-bar
+      dark
+      app
+      color="deep-purple accent-4"
+    >
+      <v-app-bar-nav-icon />
+      <v-toolbar-title>Fullstack js app</v-toolbar-title>
+      <v-spacer />
+      <v-btn
+        color="white"
+        text
+      >
         Home
-      </router-link> |
-      <router-link to="/about">
-        About
-      </router-link>
-    </div>
-    <router-view />
-  </div>
+      </v-btn>
+      <v-btn
+        v-if="!user"
+        to="/ingreso"
+        color="white"
+        text
+      >
+        Login
+      </v-btn>
+      <v-btn
+        v-if="user"
+        color="white"
+        text
+        @click="logout"
+      >
+        Logout
+      </v-btn>
+    </v-app-bar>
+    <v-main>
+      <router-view />
+    </v-main>
+  </v-app>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+<script>
+import { mapState, mapActions } from 'vuex';
+import { Auth } from '@/firebase';
+export default {
+  name: "App",
+  computed:{
+    ...mapState(['user'])
+  },
+  created(){
+    let user = Auth.currentUser
+    this.setUser(user)
+  },
+  methods: {
+    ...mapActions(['setUser']),
+   logout(){
+    Auth.signOut().then(() => {
+      this.setUser(null)
+      this.$router.push('/ingreso')
+      })
+    }
+  }
+};
+</script>

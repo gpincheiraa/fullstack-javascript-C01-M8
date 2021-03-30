@@ -1,16 +1,23 @@
 // https://docs.cypress.io/api/introduction/api.html
 
-describe("Primeros pasos en Cypress", () => {
-  it("Visitar el landing page y probar título", () => {
+describe("Home page", () => {
+  it("has the correct heading", () => {
     cy.visit("/");
-    cy.contains("h1", "Bienvenido al curso de pruebas E2E con Cypress");
+    cy.contains("h1", "Bienvenido al curso fullstack Javascript");
   });
-  it("Seleccionar un link y probar el cambio en la url", () => {
-    cy.contains("a.nav-link", "Sign up").click();
-    cy.hash().should("equal", "#/register");
+
+  it("has a link to create account", () => {
+    cy.contains("a.nav-link", "Crear cuenta").click();
+    cy.hash().should("equal", "/registro");
   });
-  it("Probar visibilidad de un elemento por selector css", () => {
-    cy.visit("/#/login");
+
+  it("has a link to login", () => {
+    cy.contains("a.nav-link", "Iniciar Sesión").click();
+    cy.hash().should("equal", "/ingreso");
+  });
+
+  it("has visible buttons", () => {
+    cy.visit("/ingreso");
     cy.get("button").should("be.visible");
   });
 });

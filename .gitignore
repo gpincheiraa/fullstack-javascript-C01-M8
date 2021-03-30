@@ -6,7 +6,7 @@ node_modules
 127.0.0.1
 /tests/e2e/videos/
 /tests/e2e/screenshots/
-
+backend/firebase-service-account.json
 # local env files
 .env.local
 .env.*.local
