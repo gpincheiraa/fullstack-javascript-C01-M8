@@ -12,14 +12,30 @@ export default new Vuex.Store({
       name: '',
       description: '',
       code: ''
+    },
+    showDialog: false,
+    dialogMsg: {
+      type: '',
+      msg: ''
     }
   },
   mutations: {
+    SHOW_DIALOG(state){
+      state.showDialog = true;
+    },
+    HIDE_DIALOG(state){
+      state.showDialog = false;
+    },
+    SET_DIALOG_MSG(state, { type, msg }){
+      state.showDialog = true;
+      state.dialogMsg.type = type;
+      state.dialogMsg.msg = msg;
+    },
     SET_PRODUCTS(state, products){
-      state.products = products
+      state.products = products;
     },
     SET_USER(state, user){
-      state.user = user
+      state.user = user;
     }
   },
   actions: {
@@ -41,8 +57,13 @@ export default new Vuex.Store({
       } 
     },
     setUser({ commit }, user){
-      commit('SET_USER',user)
-    }
+      commit('SET_USER', user)
+    },
+    setDialogMsg({commit}, {type, msg}){
+      commit('SET_DIALOG_MSG', type, msg )
+      commit('SHOW_DIALOG')
+    },
+
   },
   modules: {
   }

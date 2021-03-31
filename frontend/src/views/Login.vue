@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-main>
     <v-card
       width="400px"
       class="mx-auto my-auto"
@@ -12,8 +12,8 @@
       <v-card-text>
         <v-form>
           <v-text-field
-            v-model="user" 
-            label="Usuario"
+            v-model="email" 
+            label="Correo"
             prepend-icon="mdi-account-circle"
           />
           <v-text-field
@@ -28,7 +28,7 @@
       </v-card-text>
       <v-divider />
       <v-card-actions>
-        <v-btn color="success">
+        <v-btn to="/registro" color="success">
           Registro
         </v-btn>
         <v-spacer />
@@ -40,29 +40,40 @@
         </v-btn>
       </v-card-actions>
     </v-card>
-  </v-app>
+  </v-main>
 </template>
 <script>
 import { Auth } from "@/firebase";
 import { mapActions } from "vuex";
 
 export default {
-  data: () => ({
-    user: "",
-    password: "",
-    showPassword: false
-  }),
+  data() {
+    return {
+      valid: true,
+      email: '',
+      emailRules: [
+        v => !!v || 'El correo es requerido',
+        v => /.+@.+\..+/.test(v) || 'El correo debe ser válido must be valid',
+      ],
+      password: "",
+      passwordRules: [ v => !!v || 'La contraseña es requerida'],
+      showPassword: false,
+    }
+  },
   methods: {
 		...mapActions(['setUser']),
+    validate(){
+       this.$refs.form.validate()
+    },
     login() {
-			Auth.signInWithEmailAndPassword(this.user, this.password)
-        .then((user) => {
-					this.setUser(user)
+			Auth.signInWithEmailAndPassword(this.email, this.password)
+        .then((response) => {
+					this.setUser(response.user)
           this.$router.push("/apod");
         })
         .catch((error) => {
           alert("Usuario o contraseña inválidos", error);
-        });
+      });
     }
   }
 };

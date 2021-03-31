@@ -10,7 +10,9 @@ Vue.config.productionTip = false
 
 let app
 
+// Configures axios with authentication headers
 authMiddleware();
+
 
 Auth.onAuthStateChanged(() => {
   if (!app) {
