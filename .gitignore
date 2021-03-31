@@ -4,6 +4,7 @@ node_modules
 /backend/public
 /coverage
 127.0.0.1
+127.0.0.2
 /tests/e2e/videos/
 /tests/e2e/screenshots/
 backend/firebase-service-account.json

@@ -4,15 +4,15 @@ function authMiddleware(request, response, next) {
   const headerToken = request.headers.authorization;
   if (!headerToken) {
     return response
-      .send({ message: "No token provided" })
-      .status(401);
+      .status(401)
+      .json({ message: "No token provided" });
   }
   const [ authorizationType, tokenValue ] = headerToken.split(" ");
 
-  if (headerToken && authorizationType !== "Bearer") {
+  if (headerToken && authorizationType.toLowerCase() !== "bearer") {
     return response
-      .send({ message: "Invalid token" })
-      .status(401);
+      .status(401)
+      .json({ message: "Invalid token" });
   }
 
   firebaseAuth
@@ -20,8 +20,8 @@ function authMiddleware(request, response, next) {
     .verifyIdToken(tokenValue)
     .then(() => next())
     .catch(() => response
-      .send({ message: "Could not authorize" })
       .status(403)
+      .json({ message: "Could not authorize" })
     );
 }
 
