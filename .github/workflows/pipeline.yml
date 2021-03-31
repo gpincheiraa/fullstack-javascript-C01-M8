@@ -36,6 +36,10 @@ jobs:
       HEROKU_OWNER_EMAIL: ${{ secrets.HEROKU_OWNER_EMAIL }}
       FIREBASE_BUCKET_NAME: ${{ secrets.FIREBASE_BUCKET_NAME }}
       FIREBASE_SERVICE_ACCOUNT_OBJECT_TOKEN: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_OBJECT_TOKEN }}
+      DB_USERNAME:  ${{ secrets.DB_USERNAME }}
+      DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+      DB_NAME: ${{ secrets.DB_NAME }}
+      DB_HOSTNAME: ${{ secrets.DB_HOSTNAME }}
     steps:
         - name: Checkout code
           uses: actions/checkout@v2
