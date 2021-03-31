@@ -8,28 +8,19 @@
       <v-app-bar-nav-icon />
       <v-toolbar-title>Fullstack js app</v-toolbar-title>
       <v-spacer />
-      <v-btn
-        color="white"
-        text
-      >
-        Home
-      </v-btn>
-      <v-btn
-        v-if="!user"
-        to="/ingreso"
-        color="white"
-        text
-      >
-        Login
-      </v-btn>
-      <v-btn
-        v-if="user"
-        color="white"
-        text
+        <v-btn
+          v-for="link in links"
+          :key="`${link.label}-header-link`"
+          text
+          :to='link.url'
+        >
+          {{ link.label }}
+        </v-btn>
+        <v-btn
         @click="logout"
-      >
-        Logout
-      </v-btn>
+        >
+        Salir
+        </v-btn>
     </v-app-bar>
     <v-main>
       <router-view />
@@ -42,6 +33,24 @@ import { mapState, mapActions } from 'vuex';
 import { Auth } from '@/firebase';
 export default {
   name: "App",
+  data() {
+		return {
+			links: [
+				{
+					label: 'Inicio',
+					url: '/'
+				},
+				{
+					label: 'Ingreso',
+					url: '/ingreso'
+				},
+				{
+					label: 'Apod',
+					url: '/apod'
+				}
+			]
+		}
+	},
   computed:{
     ...mapState(['user'])
   },

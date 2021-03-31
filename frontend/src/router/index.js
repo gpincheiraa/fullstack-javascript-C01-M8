@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '@/views/Home.vue'
 import {Auth} from "@/firebase";
+import store from "@/store"
 
 Vue.use(VueRouter)
 
@@ -29,17 +30,17 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "products" */ "../views/Products.vue"),
     meta: {
-      login: true
-    }
+      login: true,
+    },
   },
   {
     path: "/apod",
     name: "Apod",
     component: () =>
-      import(/* webpackChunkName: "products" */ "../views/Apod.vue"),
+      import(/* webpackChunkName: "apods" */ "../views/Apod.vue"),
     meta: {
-      login: true
-    }
+      login: true,
+    },
   },
 ];
 
@@ -54,7 +55,9 @@ router.beforeEach((to, from, next) => {
   let authRequired = to.matched.some((route) => route.meta.login);
 
   if (!user && authRequired) {
-    next("/ingreso");
+    const errorType = "error"
+    const errorMsg = "Debes estar autenticado"
+    store.dispatch("authFailed",{errorType, errorMsg}).then(() => next("/ingreso"));
   } else {
     next();
   }
