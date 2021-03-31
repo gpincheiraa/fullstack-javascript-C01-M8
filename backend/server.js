@@ -1,5 +1,4 @@
 const express = require("express");
-const bodyParser = require("body-parser");
 const cors = require("cors");
 const authMiddleware = require("./auth");
 const apiRouter = require("./routes");
@@ -26,22 +25,14 @@ const server = {
     });
   },
   initialize() {
-    const port = process.env.PORT || 3000;
-    const environment = JSON.stringify(process.env.NODE_ENV);
     const app = express();
 
     this.enableCors(app);
     this.enablePublicFolder(app);
     this.setRoutes(app);
 
-    app.listen(port, () => {
-      console.log(
-        `App is running on http://localhost:${port} in environment ${environment}`
-      );
-    });
-
     return app;
   },
 };
 
-module.exports = server.initialize();
+module.exports = server;
