@@ -14,18 +14,12 @@ const routes = [
   {
     path: "/registro",
     name: "SignUp",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () =>
       import(/* webpackChunkName: "register" */ "../views/Register.vue"),
   },
   {
     path: "/ingreso",
     name: "SignIn",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () =>
       import(/* webpackChunkName: "login" */ "../views/Login.vue"),
   },
@@ -34,6 +28,9 @@ const routes = [
     name: "Products",
     component: () =>
       import(/* webpackChunkName: "products" */ "../views/Products.vue"),
+    meta: {
+      login: true
+    }
   },
   {
     path: "/apod",
@@ -62,6 +59,5 @@ router.beforeEach((to, from, next) => {
     next();
   }
 });
-
 
 export default router

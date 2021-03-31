@@ -23,7 +23,7 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    async getProducts({commit}){
+    async getProducts({ commit }){
       try {
         const response = await axios.get(`${process.env.VUE_APP_API_URL}/products`)
         commit('SET_PRODUCTS', response.data)
@@ -40,7 +40,7 @@ export default new Vuex.Store({
         console.log(error);
       } 
     },
-    setUser({commit}, user){
+    setUser({ commit }, user){
       commit('SET_USER',user)
     }
   },
