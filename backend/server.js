@@ -1,8 +1,8 @@
-const app = require("./app");
+const App = require("./app");
 const port = process.env.PORT || 3000;
 const environment = JSON.stringify(process.env.NODE_ENV);
 
-app.initialize();
+const app = App.initialize();
 
 app.listen(port, () => {
   console.log(
