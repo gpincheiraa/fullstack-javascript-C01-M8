@@ -49,7 +49,7 @@ ENV DB_PASSWORD=$database_password
 ENV GOOGLE_APPLICATION_CREDENTIALS=/app/$service_account_filename
 
 WORKDIR /app
-COPY --from=builder /app .
+COPY . /app
 
 RUN npm install
 
