@@ -44,7 +44,7 @@ describe("products endpoint", () => {
 
     expect(response.body).toMatchObject(products);
   });
-  // After all tersts have finished, close the DB connection
+  // After all tests have finished, close the DB connection
   afterAll(async () => {
     await thisDb.sequelize.close();
   });
